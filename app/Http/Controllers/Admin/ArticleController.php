@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Category;
 use Gate;
 use App\Models\User;
 use Auth;
@@ -19,6 +20,7 @@ class ArticleController extends Controller
     public function index()
     {
             $user = \Auth::user();
+
             $articles = Article::all();
             return view('admin.index', compact('user', 'articles'));
     }
@@ -31,7 +33,8 @@ class ArticleController extends Controller
     public function create()
     {
         $user = \Auth::user();
-        return view('admin.create', compact('user'));
+        $categories = Category::all();
+        return view('admin.create', compact('user', 'categories'));
     }
 
     /**
@@ -47,6 +50,8 @@ class ArticleController extends Controller
             'description' => ['required', 'min:3'],
             'content' => ['required', 'min:3'],
             'img' => ['required'],
+            'cat_id' => ['required'],
+            'tags'=> ['required']
         ]);
         // dd($attributes['img']->getPathName());
         $img = \Image::make($attributes['img']->getPathName());
@@ -57,10 +62,11 @@ class ArticleController extends Controller
             'title'=> $attributes['title'],
             'description'=> $attributes['description'],
             'content'=> $attributes['content'],
-            'cat_id'=> 1,
+            'cat_id'=> $attributes['cat_id'],
             'author'=> \Auth::user()->name,
-            'img'=> 'public/images/'.str2url($attributes['title']).'.jpg',
-            'preview'=> 'public/images/'.str2url($attributes['title']).'-mini'.'.jpg',
+            'img'=> '/images/'.str2url($attributes['title']).'.jpg',
+            'preview'=> '/images/'.str2url($attributes['title']).'-mini'.'.jpg',
+            'tags' => $attributes['tags'],
         ]);
 
         return redirect('/admin/articles');
@@ -85,7 +91,10 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        $categories = Category::all();
+        $user = \Auth::user();
+        return view('admin.edit', compact('article','user', 'categories'));
     }
 
     /**
@@ -97,7 +106,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Article::where('id', $id)->update(request(['title', 'description', 'content', 'cat_id', 'tags']));
+
+        return redirect("admin/articles/{$id}/edit");
     }
 
     /**
@@ -108,6 +119,16 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = Article::find($id)->img;
+        $imagemini = Article::find($id)->preview;
+        if($image !== NULL && isset($image) && file_exists($image)) {
+            unlink(public_path().$image);
+         }
+
+         if($imagemini !== NULL && isset($imagemini) && file_exists($imagemini)) {
+            unlink(public_path().$imagemini);
+         }
+         Article::find($id)->delete();
+        return redirect('/admin/articles');
     }
 }

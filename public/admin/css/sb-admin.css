@@ -10917,3 +10917,12 @@ body.sidebar-toggled footer.sticky-footer {
 table.table.table-bordered td {
     vertical-align: middle;
 }
+
+span.tag.label.label-info {
+    background: #17a2b8;
+    border-radius: 6px;
+    padding: 1px 4px 2px 4px;
+}
+.bootstrap-tagsinput {
+    width: 100%;
+}

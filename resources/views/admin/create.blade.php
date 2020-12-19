@@ -20,15 +20,26 @@
             </div>
             <div class="form-group">
               <label>Контент</label>
-              <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+              <textarea name="content" class="form-control" rows="7"></textarea>
             </div>
-          
+            <div class="form-group">
+              <label>Теги</label><br>
+              <input type="text" name="tags" class="form-control"  value="" data-role="tagsinput" />
+            </div>  
+            <div class="form-group">
+              <label>Категорія</label>
+              <select name="cat_id" class="form-control form-control">
+                  @foreach($categories as $cat)
+                      <option value="{{$cat->id}}">{{$cat->name}}</option>
+                  @endforeach
+              </select>
+            </div>
             <div class="form-group">
               <label>Зображення</label>
               <input type="file" name="img">
             </div>
             <div class="text-center">
-               <button type="submit" class="btn btn-primary mt-4">Оновити</button>
+               <button type="submit" class="btn btn-primary mt-4">Створити</button>
             </div>
           </div>
 

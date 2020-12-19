@@ -20,6 +20,10 @@
   <!-- Custom styles for this template-->
   <link href="/admin/css/sb-admin.css" rel="stylesheet">
 
+   <link rel="stylesheet" href="/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-tagsinput-latest/assets/app.css">
+
 </head>
 
 <body id="page-top">
@@ -54,6 +58,10 @@
       <li class="nav-item">
         <a class="nav-link text-center" href="/admin/articles">
           <span>Статті</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-center" href="/admin/categories">
+          <span>Категорії</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-center" href="#" data-toggle="modal" data-target="#logoutModal">Вийти</a>
@@ -105,6 +113,17 @@
   <!-- Demo scripts for this page-->
   <script src="/admin/js/demo/datatables-demo.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="/plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput/bootstrap-tagsinput-angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/rainbow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/generic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/js/language/javascript.js"></script>
+    <script src="/plugins/bootstrap-tagsinput-latest/assets/app.js"></script>
+    <script src="/plugins/bootstrap-tagsinput-latest/assets/app_bs3.js"></script>
 </body>
 
 </html>
