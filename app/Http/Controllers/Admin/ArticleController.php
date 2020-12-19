@@ -131,4 +131,6 @@ class ArticleController extends Controller
          Article::find($id)->delete();
         return redirect('/admin/articles');
     }
+
+    
 }

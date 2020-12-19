@@ -91,11 +91,12 @@
           <!-- Widget [Search Bar Widget]-->
           <div class="widget search">
             <header>
-              <h3 class="h6">Search the blog</h3>
+              <h3 class="h6">Пошук по блогу</h3>
             </header>
-            <form action="#" class="search-form">
+            <form action="/articles/search" method="POST" class="search-form">
+              {{ csrf_field() }}
               <div class="form-group">
-                <input type="search" placeholder="What are you looking for?">
+                <input type="search" name="search" placeholder="Пошук">
                 <button type="submit" class="submit"><i class="icon-search"></i></button>
               </div>
             </form>

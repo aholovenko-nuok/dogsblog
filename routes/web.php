@@ -23,6 +23,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/admin/articles', App\Http\Controllers\Admin\ArticleController::class);
 
 Route::resource('', App\Http\Controllers\ArticleController::class);
+Route::post('/articles/search', [App\Http\Controllers\ArticleController::class, 'search']);
+Route::get('/articles/search', [App\Http\Controllers\ArticleController::class, 'search']);
 Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'show']);
+
+
+
 Route::resource('/categories', App\Http\Controllers\CategoryController::class);
 Route::resource('/admin/categories', App\Http\Controllers\Admin\CategoryController::class);

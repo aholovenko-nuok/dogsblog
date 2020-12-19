@@ -8,6 +8,9 @@
           <div class="container">
             <div class="row">
               <!-- post -->
+              @if(count($articles) < 1)
+                  <h4>По запиту <strong style="color: blue">{{$search}}</strong> немає результатів</h4>
+              @endif
               @foreach($articles as $article)
               <div class="post col-xl-6">
                 <div class="post-thumbnail"><a href="/articles/{{$article->id}}"><img src="{{$article->preview}}" alt="..." class="img-fluid"></a></div>

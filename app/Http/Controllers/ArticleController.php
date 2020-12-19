@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-            $articles = Article::all();
+            $articles = Article::all();  
             $categories = Category::all();
             return view('frontpage.blog', compact('articles', 'categories'));
     }
@@ -88,5 +88,14 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+            $search = $request->input('search');
+            $articles = Article::where('tags', 'LIKE', "%".$search."%")->get();   
+            
+            $categories = Category::all();
+            return view('frontpage.search', compact('articles', 'categories', 'search'));   
     }
 }
