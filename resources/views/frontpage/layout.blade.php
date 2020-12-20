@@ -94,7 +94,7 @@
               <p>&copy; 2020. Усі права захищені</p>
             </div>
             <div class="col-md-6 text-right">
-              <p>Розроблено <strong>Головенко А.О</strong>
+              <p>Розроблено <strong>Головенко А.О, Каравай І.С.</strong>
                 <!-- Please do not remove the backlink to Bootstrap Temple unless you purchase an attribution-free license @ Bootstrap Temple or support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)                         -->
               </p>
             </div>

@@ -55,7 +55,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Розроблено: Головенко А.О., 2020</span>
+            <span>Розроблено: Головенко А.О.,Каравай І.С., 2020</span>
           </div>
         </div>
       </footer>
