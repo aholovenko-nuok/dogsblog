@@ -3,8 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Blog - B4 Template by Bootstrap Temple</title>
-    <meta name="description" content="">
+    <title>
+      @if (\Request::is('articles/*'))  
+      {{$article->title}}
+      @else 
+      Блог
+      @endif
+      
+  
+    </title>
+      @if (\Request::is('articles/*'))  
+      <meta name="description" content="{{$article->description}}">
+      @else 
+      <meta name="description" content="Інформаційний сайт про породу собак">
+      @endif
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
@@ -81,7 +94,7 @@
               <p>&copy; 2020. Усі права захищені</p>
             </div>
             <div class="col-md-6 text-right">
-              <p>Template By <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Головенко А.О</a>
+              <p>Розроблено <strong>Головенко А.О</strong>
                 <!-- Please do not remove the backlink to Bootstrap Temple unless you purchase an attribution-free license @ Bootstrap Temple or support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)                         -->
               </p>
             </div>
@@ -96,6 +109,7 @@
     <script src="/frontpage/vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="/frontpage/vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
     <script src="/frontpage/js/front.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
   </body>
 </html>

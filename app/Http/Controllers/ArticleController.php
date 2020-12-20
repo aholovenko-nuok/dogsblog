@@ -48,12 +48,13 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        $social = \Share::page('http://'.\Request::getHost().'/articles/'.$id)->facebook()->twitter()->whatsapp()->telegram();
         $articles = Article::all();
         $tags = explode(",", Article::find($id)->tags);
         $article = Article::find($id);
         $categories = Category::all();
         $user = \Auth::user();
-        return view('frontpage.show', compact('article','user', 'categories', 'articles', 'tags'));
+        return view('frontpage.show', compact('article','user', 'categories', 'articles', 'tags', 'social'));
     }
 
     /**

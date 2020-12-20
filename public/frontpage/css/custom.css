@@ -1,1 +1,15 @@
 /* your styles go here */
+
+#social-links ul li {
+	display: inline-block;
+	margin: 0 5px;
+}
+#social-links ul li a {
+	font-size: 36px;
+}
+#social-links ul li:last-child a{
+	font-size: 30px;
+}
+#social-links ul {
+	text-align: right;
+}

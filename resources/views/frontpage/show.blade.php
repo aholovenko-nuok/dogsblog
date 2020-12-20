@@ -24,6 +24,11 @@
                 <div class="post-body">
                   {{$article->content}}
                 </div>
+                <div class="text-right mt-3">
+                      <strong>Поділитися в соц.мережах:</strong><br>
+                      {!!$social!!}
+                </div>
+                
                 <div class="post-comments">
                   <header>
                     <h3 class="h6">Post Comments<span class="no-of-comments">(3)</span></h3>

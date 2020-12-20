@@ -440,6 +440,15 @@
       ),
       'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
     ),
+    'jorenvanhocht/laravel-share' => 
+    array (
+      'pretty_version' => '3.3.1',
+      'version' => '3.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1991e056fedd60a9e48e323b84a468a6335a7a2f',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
