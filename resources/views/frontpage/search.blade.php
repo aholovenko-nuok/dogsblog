@@ -28,6 +28,7 @@
                 </div>
               </div>
               @endforeach
+              
         </main>
         <aside class="col-lg-4">
           <!-- Widget [Search Bar Widget]-->
@@ -35,7 +36,7 @@
             <header>
               <h3 class="h6">Пошук по блогу</h3>
             </header>
-            <form action="/articles/search" method="POST" class="search-form">
+            <form action="/search" method="POST" class="search-form">
               {{ csrf_field() }}
               <div class="form-group">
                 <input type="search" name="search" placeholder="Пошук">

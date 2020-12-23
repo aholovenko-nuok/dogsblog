@@ -32,7 +32,7 @@
             <header>
               <h3 class="h6">Пошук по блогу</h3>
             </header>
-            <form action="/articles/search" method="POST" class="search-form">
+            <form action="/search" method="POST" class="search-form">
               {{ csrf_field() }}
               <div class="form-group">
                 <input type="search" name="search" placeholder="Пошук">
@@ -46,7 +46,7 @@
               <h3 class="h6">Категорії</h3>
             </header>
             @foreach($categories as $category)
-            <div class="item d-flex justify-content-between"><a href="/categories/{{$category->id}}">{{$category->name}}</a></div>
+            <div class="item d-flex justify-content-between"><a href="/categories/{{$category->id}}">{{$category->name}} <span>{{count($articles_all->where('cat_id', $category->id))}}</span></a></div>
             @endforeach
           </div>
          

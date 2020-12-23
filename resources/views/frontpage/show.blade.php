@@ -30,60 +30,123 @@
                 </div>
                 
                 <div class="post-comments">
+                  
                   <header>
-                    <h3 class="h6">Post Comments<span class="no-of-comments">(3)</span></h3>
+                    <h3 class="h6">Коментарі<span class="no-of-comments">{{count($comments)}}</span></h3>
                   </header>
-                  <div class="comment">
+
+
+
+                  @foreach($comments as $comment)
+
+                  <div class="comment" id="comment-{{$comment->id}}">
                     <div class="comment-header d-flex justify-content-between">
                       <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Jabi Hernandiz</strong><span class="date">May 2016</span></div>
+                        <div class="image"></div>
+                        <div class="title"><strong>{{$comment->guest_name}}</strong><span class="date">{{date("d.m.Y", strtotime($comment->created_at))}}</span></div>
                       </div>
                     </div>
                     <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                      <p>{{$comment->comment}}</p>
                     </div>
+                    <div style="margin-left:10px;" class="text-right">
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample-{{$comment->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Відповісти
+                                    </a>
+                                    <div class="collapse" id="collapseExample-{{$comment->id}}">
+                                      <div class="card card-body">
+                                        <form class="commenting-form" id="comment-form" method="post" action="/replies/store" >
+                                        {{ csrf_field() }}
+                                        <div class="row">
+                                         
+                                          <div class="form-group col-md-6">
+                                            <input type="hidden" name="comment_id" id="username" value="{{$comment->id}}">
+                                            <input type="hidden" name="comment_owner" id="username" value="{{$comment->guest_name}}">
+                                            <input type="text" name="guest_name" id="username" placeholder="Ім'я" class="form-control">
+                                          </div>
+                                          <div class="form-group col-md-6">
+                                            <input type="email" name="guest_email" id="useremail" placeholder="Email (не буде опублікований)" class="form-control">
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                            <textarea name="reply" id="comment" placeholder="Ваша відповідь" class="form-control"></textarea>
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-secondary">Відповісти</button>
+                                          </div>
+                                        </div>
+                                        </form>
+                                      </div>
+                    </div> 
+                    <div style="margin-left:10px;">
+
+                                    
+                                    <!-- Dynamic Reply form -->
+                                    
+                                </div>
+                                @foreach($comment->replies as $rep)
+                                     @if($comment->id === $rep->comment_id)
+                                        <div class="comment text-left" style="margin-left:40px;" id="reply-{{$rep->id}}">
+                                        <div class="comment-header d-flex justify-content-between">
+                                          <div class="user d-flex align-items-center">
+                                            <div class="title"><strong>{{ $rep->name }}</strong><span class="date">23.12.2020</span></div>
+                                            </div>
+                                      </div>
+                                      <div class="comment-body">
+                                        <p> {!! $rep->reply !!}</p>
+                                      </div>
+                                    </div>
+                                    <div style="margin-left:10px;" class="text-right">
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample-{{$rep->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Відповісти
+                                    </a>
+                                    <div class="collapse" id="collapseExample-{{$rep->id}}">
+                                      <div class="card card-body">
+                                        <form class="commenting-form" id="comment-form" method="post" action="/replies/replysaver" >
+                                        {{ csrf_field() }}
+                                        <div class="row">
+                                          <input type="hidden" name="reply_id" value="{{$rep->id}}">
+                                          <input type="hidden" name="reply_name" value="{{$rep->name}}">
+                                          <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                                          <div class="form-group col-md-12">
+                                            <input type="text" name="guest_name" id="username" placeholder="Ім'я" class="form-control">
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                            <textarea name="reply" id="comment" placeholder="Ваш коментар" class="form-control"></textarea>
+                                          </div>
+                                          <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-secondary">Відповісти</button>
+                                          </div>
+                                        </div>
+                                        </form>
+                                      </div>
+                                    </div>                                                          
+                                </div>
+                                    @endif 
+                                @endforeach
+                                
+                        </div>
                   </div>
-                  <div class="comment">
-                    <div class="comment-header d-flex justify-content-between">
-                      <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>Nikolas</strong><span class="date">May 2016</span></div>
-                      </div>
-                    </div>
-                    <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <div class="comment-header d-flex justify-content-between">
-                      <div class="user d-flex align-items-center">
-                        <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="title"><strong>John Doe</strong><span class="date">May 2016</span></div>
-                      </div>
-                    </div>
-                    <div class="comment-body">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                    </div>
-                  </div>
+                  @endforeach
                 </div>
                 <div class="add-comment">
                   <header>
-                    <h3 class="h6">Leave a reply</h3>
+                    <h3 class="h6">Залишити коментар</h3>
                   </header>
-                  <form action="#" class="commenting-form">
+                  <form class="commenting-form" id="comment-form" method="post" action="/comments/store" >
+                    {{ csrf_field() }}
                     <div class="row">
+                      <input type="hidden" name="article_id" value="{{$article->id}}">
                       <div class="form-group col-md-6">
-                        <input type="text" name="username" id="username" placeholder="Name" class="form-control">
+                        <input type="text" name="guest_name" id="username" placeholder="Ім'я" class="form-control">
                       </div>
                       <div class="form-group col-md-6">
-                        <input type="email" name="username" id="useremail" placeholder="Email Address (will not be published)" class="form-control">
+                        <input type="email" name="guest_email" id="useremail" placeholder="Email (не буде опублікований)" class="form-control">
                       </div>
                       <div class="form-group col-md-12">
-                        <textarea name="usercomment" id="usercomment" placeholder="Type your comment" class="form-control"></textarea>
+                        <textarea name="comment" id="comment" placeholder="Ваш коментар" class="form-control"></textarea>
                       </div>
                       <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-secondary">Submit Comment</button>
+                        <button type="submit" class="btn btn-secondary">Залишити коментар</button>
                       </div>
                     </div>
                   </form>
@@ -98,7 +161,7 @@
             <header>
               <h3 class="h6">Пошук по блогу</h3>
             </header>
-            <form action="/articles/search" method="POST" class="search-form">
+            <form action="/search" method="POST" class="search-form">
               {{ csrf_field() }}
               <div class="form-group">
                 <input type="search" name="search" placeholder="Пошук">

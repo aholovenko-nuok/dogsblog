@@ -47,8 +47,9 @@ class CategoryController extends Controller
     public function show($id)
     {
     		$categories = Category::all();
+            $articles_all = Article::all();
             $articles = Article::all()->where('cat_id', $id);
-            return view('frontpage.categories.index', compact('articles', 'categories'));
+            return view('frontpage.categories.index', compact('articles', 'categories', 'articles_all'));
     }
 
     /**

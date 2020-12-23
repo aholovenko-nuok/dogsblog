@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -16,9 +17,16 @@ class ArticleController extends Controller
     {
             $articles = Article::all();  
             $categories = Category::all();
-            return view('frontpage.blog', compact('articles', 'categories'));
+            $user = \Auth::user();
+            return view('frontpage.blog', compact('articles', 'categories', 'user'));
     }
 
+    public function authors()
+    {
+            $articles = Article::all();  
+            $categories = Category::all();
+            return view('frontpage.author', compact('articles', 'categories'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +34,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-       
+        
     }
 
     /**
@@ -48,13 +56,15 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+        $comments = Comment::where('article_id', $id)->get();
+        // dd($comments);
         $social = \Share::page('http://'.\Request::getHost().'/articles/'.$id)->facebook()->twitter()->whatsapp()->telegram();
         $articles = Article::all();
         $tags = explode(",", Article::find($id)->tags);
         $article = Article::find($id);
         $categories = Category::all();
         $user = \Auth::user();
-        return view('frontpage.show', compact('article','user', 'categories', 'articles', 'tags', 'social'));
+        return view('frontpage.show', compact('article','user', 'categories', 'articles', 'tags', 'social', 'comments'));
     }
 
     /**
@@ -93,10 +103,10 @@ class ArticleController extends Controller
 
     public function search(Request $request)
     {
+            $user = \Auth::user();
             $search = $request->input('search');
             $articles = Article::where('tags', 'LIKE', "%".$search."%")->get();   
-            
             $categories = Category::all();
-            return view('frontpage.search', compact('articles', 'categories', 'search'));   
+            return view('frontpage.search', compact('articles', 'categories', 'search', 'user'));   
     }
 }

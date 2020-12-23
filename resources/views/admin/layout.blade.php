@@ -30,7 +30,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Панель адміністратора</a>
+    <a class="navbar-brand mr-1" href="/admin/articles">Панель адміністратора</a>
 
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">

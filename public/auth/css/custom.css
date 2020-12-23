@@ -1,0 +1,31 @@
+.content{
+background: #f7efda;
+}
+.btn-primary{
+background: #628a5b;
+border:none;
+}
+
+.btn-primary:hover{
+background: #6796bf;
+}
+
+
+.list-group-item{
+border:none;
+}
+
+.list-group-item.active{
+	background: #a85e63;
+
+}
+
+.bg-primary{
+	background: #a85e63 !important;
+}
+.indicator{
+	background: #6796bf !important;
+}
+.country-select {
+    display: block !important;
+}

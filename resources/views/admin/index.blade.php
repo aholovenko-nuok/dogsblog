@@ -10,7 +10,7 @@
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
-            Пам'ятки <a class="btn btn-success" style="float: right;" href="/admin/articles/create">Додати статтю</a></div>
+            Усі статті <a class="btn btn-success" style="float: right;" href="/admin/articles/create">Додати статтю</a></div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" width="100%" cellspacing="0">
